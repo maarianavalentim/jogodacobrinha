@@ -52,20 +52,28 @@ canvas {
     font-size: 1.5rem;
 }
 
-.btn-play {
+.btn-play,
+.btn-pause{
     border: none;
-    border-radius: 100px;
-    padding: 10px 15px 10px 12px;
-    font-size: 1rem;
+    border-radius: 20px; /* Reduzido o border-radius para diminuir o tamanho */
+    padding: 8px 12px; /* Ajustado o padding para um tamanho menor */
+    font-size: 0.8rem; /* Reduzido o tamanho da fonte para se adequar ao botão menor */
     font-weight: 600;
-    color: #333;
-    margin-top: 40px;
+    color: #fff;
+    background-color: #333;
+    margin-top: 10px; /* Diminuído o espaço superior */
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
     cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
 }
-.btn-start{
-    background-color: blueviolet;
+.btn-play:hover {
+    background-color: #555; 
+}
+
+.btn-pause:hover {
+    background-color: darkorchid; 
 }

@@ -1,18 +1,23 @@
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
 
-const buttonStart = document.querySelector(".btn-start");
-
-buttonStart.addEventListener("click", () => {
-    score.innerText = "00";
-    menu.style.display = "none";
-    canvas.style.filter = "none";
-
-    snake = [initialPosition];
-    direction = "right"; // Defina a direção inicial do movimento da cobra aqui, por exemplo, "direita".
-    gameLoop(); // Inicie o loop do jogo novamente.
+//botão de pausa
+const buttonPause = document.querySelector(".btn-pause");
+let isPaused = false;
+buttonPause.addEventListener("click", () => {
+    if (isPaused) {
+        // Se o jogo estiver pausado, retome o loop do jogo.
+        isPaused = false;
+        buttonPause.innerText = "Pausar";
+        gameLoop(); //É o loop principal do jogo que controla o desenho da tela, o movimento da cobra, a verificação de colisões e a atualização do jogo em intervalos regulares.
+    } else {
+        // Se o jogo estiver em execução, pause o loop do jogo.
+        isPaused = true;
+        buttonPause.innerText = "Retomar";
+        clearInterval(loopId); // Pare o loop do jogo.
+    }
 });
-  
+
 
 const score = document.querySelector(".score--value")
 const finalScore = document.querySelector(".final-score > span")
@@ -29,7 +34,7 @@ let snake = [initialPosition]
 
 const incrementScore = () => {
     score.innerText = +score.innerText + 10
-}
+} //Atualiza a pontuação incrementando o valor do elemento HTML com a classe "score--value" em 10.
 
 const randomNumber = (min, max) => {
     return Math.round(Math.random() * (max - min) + min)
@@ -39,7 +44,7 @@ const randomPosition = () => {
     const number = randomNumber(0, canvas.width - size)
     return Math.round(number / 30) * 30
 }
-
+//cores do quadrado
 const randomColor = () => {
     const red = randomNumber(0, 255)
     const green = randomNumber(0, 255)
@@ -68,7 +73,7 @@ const drawFood = () => {
 
 const drawSnake = () => {
     ctx.fillStyle = "#ddd"
-
+// Desenha a cobra na tela.
     snake.forEach((position, index) => {
         if (index == snake.length - 1) {
             ctx.fillStyle = "white"
@@ -80,7 +85,7 @@ const drawSnake = () => {
 
 const moveSnake = () => {
     if (!direction) return
-
+//Move a cobra com base na direção atual.
     const head = snake[snake.length - 1]
 
     if (direction == "right") {
@@ -182,9 +187,9 @@ const gameLoop = () => {
     }, 300)
 }
 
-gameLoop()
+gameLoop()//É o loop principal do jogo que controla o desenho da tela, o movimento da cobra, a verificação de colisões e a atualização do jogo em intervalos regulares.
 
-document.addEventListener("keydown", ({ key }) => {
+document.addEventListener("keydown", ({ key }) => { //Captura as teclas pressionadas pelo jogador para definir a direção da cobra.
     if (key == "ArrowRight" && direction != "left") {
         direction = "right"
     }
