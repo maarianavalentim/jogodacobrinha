@@ -66,3 +66,6 @@ canvas {
     gap: 5px;
     cursor: pointer;
 }
+.btn-start{
+    background-color: blueviolet;
+}

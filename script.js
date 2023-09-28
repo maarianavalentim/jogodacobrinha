@@ -1,6 +1,19 @@
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
 
+const buttonStart = document.querySelector(".btn-start");
+
+buttonStart.addEventListener("click", () => {
+    score.innerText = "00";
+    menu.style.display = "none";
+    canvas.style.filter = "none";
+
+    snake = [initialPosition];
+    direction = "right"; // Defina a direção inicial do movimento da cobra aqui, por exemplo, "direita".
+    gameLoop(); // Inicie o loop do jogo novamente.
+});
+  
+
 const score = document.querySelector(".score--value")
 const finalScore = document.querySelector(".final-score > span")
 const menu = document.querySelector(".menu-screen")
